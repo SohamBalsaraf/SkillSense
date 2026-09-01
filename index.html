@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#163a5f">
+    <meta name="description" content="SkillSense is an on-device AI mock interview coach.">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://cdn.jsdelivr.net; style-src 'self'; img-src 'self' data:; media-src 'self' blob:; connect-src 'self' https://cdn.jsdelivr.net https://storage.googleapis.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-src 'none';">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+    <title>SkillSense</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="top-bar">
+        <div>
+          <p class="eyebrow">On-device mock interviews</p>
+          <h1>SkillSense</h1>
+        </div>
+        <span class="privacy-pill" id="privacyStatus">Preparing</span>
+      </header>
+
+      <main>
+        <section class="panel hero-panel" aria-labelledby="questionTitle">
+          <div class="question-row">
+            <div>
+              <p class="eyebrow">Current question</p>
+              <h2 id="questionTitle">Tell me about a time you solved a difficult problem.</h2>
+            </div>
+            <button class="icon-button" id="newQuestionButton" type="button" aria-label="New question" title="New question">New</button>
+          </div>
+
+          <div class="video-wrap">
+            <video id="previewVideo" playsinline muted autoplay></video>
+            <div class="video-empty" id="videoEmpty">
+              <strong>Camera preview</strong>
+              <span>Tap Record Answer to begin.</span>
+            </div>
+            <div class="timer-badge" id="timerBadge">00:00</div>
+          </div>
+
+          <div class="status-stack">
+            <div class="privacy-note" id="privacyNote">Camera, microphone, transcript, and interview history stay on this device. SkillSense has no backend, analytics, or tracking code.</div>
+            <div class="status-line" id="permissionStatus">Permissions: camera and microphone are requested only after you tap Record.</div>
+            <div class="status-line" id="faceStatus">Face model: loading locally in browser...</div>
+            <div class="status-line" id="speechStatus">Speech: checking on-device support...</div>
+            <div class="status-line" id="networkStatus">Network: idle</div>
+          </div>
+
+          <div class="button-row">
+            <button class="primary-action" id="recordButton" type="button" disabled>Record Answer</button>
+            <button class="secondary-action" id="stopButton" type="button" disabled>Stop</button>
+          </div>
+
+          <p class="microcopy" id="recordingHint">Stop unlocks after 60 seconds and the app auto-stops at 90 seconds.</p>
+        </section>
+
+        <section class="panel transcript-panel" aria-labelledby="transcriptTitle">
+          <div class="section-heading">
+            <h2 id="transcriptTitle">Live Transcript</h2>
+            <span id="wordCountLabel">0 words</span>
+          </div>
+          <p id="transcriptText" class="transcript-text">Your spoken answer appears here while the browser transcribes it locally.</p>
+        </section>
+
+        <section class="panel results-panel is-hidden" id="resultsPanel" aria-labelledby="resultsTitle">
+          <div class="section-heading">
+            <h2 id="resultsTitle">Session Results</h2>
+            <button class="text-button" id="practiceAgainButton" type="button">Practice again</button>
+          </div>
+
+          <div class="metric-grid">
+            <article class="metric-card">
+              <span>WPM</span>
+              <strong id="wpmResult">0</strong>
+            </article>
+            <article class="metric-card">
+              <span>Fillers</span>
+              <strong id="fillerResult">0</strong>
+            </article>
+            <article class="metric-card">
+              <span>Eye contact</span>
+              <strong id="eyeResult">0%</strong>
+            </article>
+            <article class="metric-card">
+              <span>Expression</span>
+              <strong id="expressionResult">Neutral</strong>
+            </article>
+          </div>
+
+          <div class="result-detail">
+            <h3>Flagged filler words</h3>
+            <p id="flaggedWords">None spotted.</p>
+          </div>
+
+          <div class="result-detail">
+            <h3>Coach tips</h3>
+            <ul id="tipsList" class="tips-list"></ul>
+          </div>
+        </section>
+
+        <section class="panel history-panel" aria-labelledby="historyTitle">
+          <div class="section-heading">
+            <h2 id="historyTitle">Recent Sessions</h2>
+            <button class="text-button" id="clearHistoryButton" type="button">Delete history</button>
+          </div>
+          <div id="historyList" class="history-list">
+            <p class="empty-history">No saved sessions yet.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="app.js?v=7"></script>
+  </body>
+</html>

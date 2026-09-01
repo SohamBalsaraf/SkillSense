@@ -1,0 +1,19 @@
+{
+  "name": "SkillSense",
+  "short_name": "SkillSense",
+  "description": "An on-device AI mock interview coach for speech pace, filler words, camera presence, and expression practice.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#edf4f7",
+  "theme_color": "#163a5f",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
